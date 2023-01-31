@@ -1,19 +1,21 @@
 #!/usr/bin/env Rscript
 
+my_repo = "https://cloud.r-project.org"
+
 if (!require("BiocManager", quietly = TRUE)){
-    install.packages("BiocManager")
+    install.packages("BiocManager", repos=my_repo)
 }
 
 if (!require("plyranges", quietly = TRUE)){
-    install.packages("plyranges")
+    BiocManager::install("plyranges")
 }
 
 if (!require("IRkernel", quietly = TRUE)){
-            install.packages("IRkernel")
+    install.packages("IRkernel", repos=my_repo)
 }
 
 if (!require("RIdeogram", quietly = TRUE)){
-            install.packages("RIdeogram")
+    install.packages("RIdeogram", repos=my_repo)
 }
 
 

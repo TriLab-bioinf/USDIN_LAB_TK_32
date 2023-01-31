@@ -1,5 +1,10 @@
 # USDIN_LAB_TK_32
 
+### Clone git repository with all the required scripts. To do so, run the following command from your working directory 
+```
+git clone https://github.com/TriLab-bioinf/USDIN_LAB_TK_32.git
+```
+
 ### Edit the configuration file config.cfg with a text editor and setup the following variables:
 
 - READ : path to the folder containing the raw fastq files in a compress form (the pipeline expects the following suffix= fastq.gz).
