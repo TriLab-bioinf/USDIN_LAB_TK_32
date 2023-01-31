@@ -150,6 +150,13 @@ bcftools mpileup -f  mm10.fa ./04-realign/${SAMPLE}_realigned.bam --indel-size 1
 
 module load R/4.2.2
 
+# Check that all required R packages are installed, otherwise install them
+if [[ ! -d /data/users/${USER}/R/4.2 ]]; then
+    mkdir /data/users/${USER}/R/4.2
+fi
+
+./check_packages.R
+
 # Remove chromosome M from bam file
 sh ./aux-1_remove_chrM.sh ${SAMPLE}
 # Run ExomeDepth
