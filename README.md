@@ -39,18 +39,3 @@ Example:
 sbatch ./bruce_pipeline.sh A20F_WES config.cfg
 ```
 
-
- # path ro reads directory
- READ=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/READS
-
- # path to adapters fasta file
- ADAPTERS=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/adapters.fa
-
- # Reference genome
- REFERENCE=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/mm10.fa
-
- # Merge reads before mapping? [true (default) or false]
- MERGE=true
-
- # File with names of bam files from control samples for exomeDepth (one file per line)
- CONTROL_BAMS=control_bam_files.txt
