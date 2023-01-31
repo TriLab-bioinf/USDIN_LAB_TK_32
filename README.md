@@ -4,8 +4,15 @@
 ```
 git clone https://github.com/TriLab-bioinf/USDIN_LAB_TK_32.git
 ```
+### Copy required script into your working directory by running the following command
+```
+# /path/to/the/command/USDIN_LAB_TK_32/copy_scrips.sh
+# For instance:
 
-### Edit the configuration file config.cfg with a text editor and setup the following variables:
+./USDIN_LAB_TK_32/copy_scrips.sh
+```
+
+### Edit the configuration file config.cfg in your current working directory with a text editor and setup the following variables:
 
 - READ : path to the folder containing the raw fastq files in a compress form (the pipeline expects the following suffix= fastq.gz).
 - ADAPTERS : full path to file containing the sequencing adapter sequences in fasta format.
@@ -17,13 +24,13 @@ Example of config.cfg file
 ```
 > cat config.cfg
 # path ro reads directory
-READ=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/READS
+READ=/data/lorenziha/KAREN_USDIN/TK_32/READS
 
 # path to adapters fasta file
-ADAPTERS=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/adapters.fa
+ADAPTERS=/data/lorenziha/KAREN_USDIN/TK_32/adapters.fa
 
 # Reference genome
-REFERENCE=/gpfs/gsfs12/users/lorenziha/KAREN_USDIN/TK_32/mm10.fa
+REFERENCE=/data/lorenziha/KAREN_USDIN/TK_32/mm10.fa
 
 # Merge reads before mapping? [true (default) or false]
 MERGE=true
@@ -31,12 +38,11 @@ MERGE=true
 # File with names of bam files from control samples for exomeDepth (one file per line)
 CONTROL_BAMS=control_bam_files.txt
 ```
+Control bam files and their corresponding bam index files (.bai) should be in the same working directory as the one you are running the pipeline from.
 
 ### Run the pipeline as so:
 ```
 sbatch ./bruce_pipeline.sh <sample name prefix> <configuration file>
-
-
 ```
 
 Example:
