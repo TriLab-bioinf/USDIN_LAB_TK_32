@@ -47,6 +47,49 @@ sbatch ./bruce_pipeline.sh <sample name prefix> <configuration file>
 
 Example:
 ```
-sbatch ./bruce_pipeline.sh A20F_WES config.cfg
+SAMPLE_NAME config.cfg
 ```
+### The pipeline will generate the following folders and files:
+
+- 01-trimming: read QC files and trimmed fastq files
+SAMPLE_NAME_R1_trimmed.fastq.gz
+SAMPLE_NAME_R2_trimmed.fastq.gz
+SAMPLE_NAME_adapter_trim.log
+SAMPLE_NAME_R1_trimmed_qc.fastq.gz
+SAMPLE_NAME_R2_trimmed_qc.fastq.gz
+SAMPLE_NAME_quality_trim.log
+
+- 02-merge: fastq files with merged PE reads
+SAMPLE_NAME_merged.fastq.gz
+SAMPLE_NAME_R1_unmerged.fastq.gz
+SAMPLE_NAME_R2_unmerged.fastq.gz
+SAMPLE_NAME_merge.log
+
+- 03-mapping: sorted bam files
+SAMPLE_NAME_sorted.bam
+SAMPLE_NAME_sorted.bam.bai
+SAMPLE_NAME_sorted_RG.bam
+SAMPLE_NAME_add_group_id.log
+SAMPLE_NAME_sorted_RG.bam.bai
+SAMPLE_NAME_map.log
+SAMPLE_NAME.sam
+
+- 04-realign: sorted +  realigned around InDels bam files (these bam files are the ones you want to upload into IGV)
+SAMPLE_NAME_realigner.intervals
+SAMPLE_NAME_realign_target_creator.log
+SAMPLE_NAME_realigned.bam
+SAMPLE_NAME_realigned.bai
+SAMPLE_NAME_indel_realigner.log
+SAMPLE_NAME_realigned_nochrM.bam
+SAMPLE_NAME_realigned_nochrM.bam.bai
+
+- 05-mpileup: raw SNP and InDel calls by GATK tool
+SAMPLE_NAME_calls.bcf
+SAMPLE_NAME_10kb_indels.bcf
+
+- 07-exomeDepth: Output files from ExomeDepth tool containing CNV info
+exomeDepth_SAMPLE_NAME_realigned_nochrM.csv
+chromosome_SAMPLE_NAME_realigned_nochrM.svg
+chromosome_SAMPLE_NAME_realigned_nochrM.png
+
 
