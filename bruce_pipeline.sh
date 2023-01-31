@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#SBATCH --mem=32g --cpus-per-task=16
+#SBATCH --mem=32g --cpus-per-task=16 --gres=lscratch:10 --time=1-00:00:00
 #From http://seqanswers.com/forums/showthread.php?t=42776
 
 set -o errexit 
@@ -144,4 +144,14 @@ bcftools mpileup -f  mm10.fa ./04-realign/${SAMPLE}_realigned.bam --indel-size 1
 
 # bcftools view -i '%QUAL>=20' -v indels  -q ./05-mpileup/${SAMPLE}_calls.bcf | bedtools intersect -a ~/Data/Ref_data/mm10_unique_RefGenes_NM_exon_coords.bed -b stdin -wa -wb
 
+############################
+# Run ExomeDepth on bam file
+############################
+
+module load R/4.2.2
+
+# Remove chromosome M from bam file
+sh ./aux-1_remove_chrM.sh ${SAMPLE}
+# Run ExomeDepth
+Rscript ./run_exomeDepth.R -i ${SAMPLE}_realigned_nochrM.bam -c ${CONTROL_BAMS} -o 07-exomeDepth -r ${REFERENCE}
 
