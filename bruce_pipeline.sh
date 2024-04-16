@@ -64,7 +64,7 @@ fi
 #########################################
 
 if [[ ! -e  ${REF_BASENAME}.dict ]]; then
-    samtools dict ${REFERENCE} -o {REF_BASENAME}.dict       
+    samtools dict ${REFERENCE} -o ${REF_BASENAME}.dict       
 fi
 
 ##############################################
